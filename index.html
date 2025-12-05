@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponyo's Style</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Merienda', cursive;}
+
+        body{
+            display:flex;
+            min-height:100vh;
+            background:linear-gradient(135deg,#ffecf3,#fde9ff,#fff9ff);
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width:250px;
+            background:#b9829f;
+            color:white;
+            display:flex;
+            flex-direction:column;
+            padding:22px;
+            box-shadow:2px 0 12px rgba(0,0,0,0.08);
+            border-right:3px solid rgba(255,255,255,0.25);
+        }
+        .sidebar h2{
+            text-align:center;
+            margin-bottom:35px;
+            font-size:23px;
+            padding-bottom:10px;
+            border-bottom:2px solid rgba(255,255,255,0.4);
+        }
+        .menu a{
+            color:#fff;
+            text-decoration:none;
+            padding:12px 15px;
+            border-radius:14px;
+            display:block;
+            margin-bottom:12px;
+            background:rgba(255,255,255,0.15);
+            transition:0.4s;
+            letter-spacing:1px;
+        }
+        .menu a:hover{
+            background:#d7a9c8;
+            transform:translateX(4px);
+        }
+
+        /* Header */
+        .main-content{flex:1;padding:30px;}
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#d8a1be;
+            color:white;
+            padding:18px 28px;
+            border-radius:16px;
+            box-shadow:0 4px 12px rgba(217,165,202,0.35);
+            letter-spacing:.5px;
+        }
+
+        /* Dashboard */
+        .cards{
+            display:none;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:25px;
+            margin-top:35px;
+        }
+        .card{
+            background:white;
+            border-radius:18px;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+            border:1px solid #fdefff;
+            transition:.3s;
+        }
+        .card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 10px 20px rgba(217,165,202,0.35);
+        }
+        .card h3{color:#b0648b;margin-bottom:10px;font-size:18px;}
+        .card p{color:#7a5971;font-size:15px;}
+
+        /* Section Base */
+        section{
+            display:none;
+            margin-top:35px;
+            background:white;
+            border-radius:18px;
+            padding:28px;
+            border:1px solid #ffebf5;
+            box-shadow:0 3px 14px rgba(216,168,200,0.2);
+        }
+        section h2{
+            margin-bottom:15px;
+            color:#b0648b;
+            font-size:20px;
+        }
+
+        /* Katalog Grid */
+        .katalog-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:25px;
+            margin-top:25px;
+        }
+        .produk-card{
+            background:#fff;
+            border-radius:18px;
+            padding:15px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+            border:1px solid #fdefff;
+            transition:.3s;
+        }
+        .produk-card:hover{
+            transform:translateY(-6px);
+            box-shadow:0 10px 20px rgba(217,165,202,0.35);
+        }
+        .produk-card img{
+            width:100%;
+            height:180px;
+            object-fit:cover;
+            border-radius:12px;
+            margin-bottom:10px;
+        }
+        .produk-card h4{
+            color:#b0648b;
+            font-size:16px;
+            margin:6px 0;
+        }
+        .produk-card p{
+            color:#7a5971;
+            font-size:14px;
+            margin-bottom:10px;
+        }
+        .produk-card button{
+            background:#b0648b;
+            border:none;
+            color:white;
+            padding:8px 12px;
+            border-radius:12px;
+            cursor:pointer;
+            font-weight:700;
+            font-size:13px;
+            transition:.3s;
+        }
+        .produk-card button:hover{
+            background:#8b4d6e;
+            transform:scale(1.05);
+        }
+
+        /* Forms */
+        form label{
+            display:block;
+            margin:12px 0 6px;
+            color:#8c6d82;
+            font-weight:600;
+        }
+        form input,form select,form textarea{
+            width:100%;
+            padding:10px;
+            border-radius:12px;
+            border:2px solid #f7d9e7;
+            background:#fff9fc;
+            font-size:14px;
+        }
+        form button{
+            margin-top:18px;
+            width:100%;
+            padding:12px;
+            background:#b0648b;
+            border:none;
+            color:white;
+            font-weight:700;
+            border-radius:14px;
+            cursor:pointer;
+            font-size:15px;
+            box-shadow:0 3px 12px rgba(176,100,139,0.35);
+            transition:.3s;
+        }
+        form button:hover{
+            background:#8b4d6e;
+            transform:scale(1.03);
+        }
+
+        footer{
+            text-align:center;
+            margin-top:35px;
+            font-size:14px;
+            color:#a97493;
+            letter-spacing:1px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="sidebar">
+    <h2>👗 Ponyo’s Style</h2>
+    <div class="menu">
+        <a href="#" onclick="showMenu('dashboard')">🏠 Dashboard</a>
+        <a href="#" onclick="showMenu('katalog')">🛍 Katalog</a>
+        <a href="#" onclick="showMenu('kontak')">☎ Kontak</a>
+        <a href="#" onclick="showMenu('member')">👥 Daftar Member</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="header">
+        <h1>Ponyo’s Style</h1>
+        <span>Admin | 2025</span>
+    </div>
+
+    <div class="cards" id="dashboard">
+        <div class="card"><h3>Produk</h3><p>128 Item</p></div>
+        <div class="card"><h3>Member</h3><p>350 Orang</p></div>
+        <div class="card"><h3>Transaksi</h3><p>89 Pesanan</p></div>
+        <div class="card"><h3>Update</h3><p>Des 2025</p></div>
+    </div>
+
+    <section id="katalog">
+        <h2>🛍 Katalog Produk</h2>
+        <p>Pilih fashion favoritmu yang manis dan elegan 💞✨</p>
+
+        <div class="katalog-grid">
+            <div class="produk-card">
+                <img src="sweet.jpg">
+                <h4>Sweet Sakura Dress</h4>
+                <p>Rp 199.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="sprinted.jpg">
+                <h4>Spirited Pink Dress</h4>
+                <p>Rp 225.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="cozy.jpg">
+                <h4>Cozy Cloud Cardigan</h4>
+                <p>Rp 175.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="mori.jpg">
+                <h4>Mori Girl Sweater</h4>
+                <p>Rp 210.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="cute ribbon.jpg">
+                <h4>Cute Ribbon Skirt</h4>
+                <p>Rp 160.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="elegan.jpg">
+                <h4>Elegant Floral Blouse</h4>
+                <p>Rp 180.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="winter.jpg">
+                <h4>Winter Pink Coat</h4>
+                <p>Rp 320.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+
+            <div class="produk-card">
+                <img src="ponyo.jpg">
+                <h4>Ponyo Overalls</h4>
+                <p>Rp 210.000</p>
+                <button>Beli Sekarang</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak">
+        <h2>📬 Hubungi Kami</h2>
+        <p><strong>Kontak Toko :</strong><br>
+        Email: support@ponyosstyle.com<br>
+        Telp: +62 812-3456-7890</p>
+        <br>
+        <form>
+            <label>Nama Lengkap</label>
+            <input type="text">
+
+            <label>Email</label>
+            <input type="email">
+
+            <label>No Telepon</label>
+            <input type="text">
+
+            <label>Pesan</label>
+            <textarea rows="4"></textarea>
+
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </section>
+
+    <section id="member">
+        <h2>👥 Pendaftaran Member</h2>
+        <form>
+            <label>Nama Lengkap</label>
+            <input type="text">
+
+            <label>Email</label>
+            <input type="email">
+
+            <label>No Telepon</label>
+            <input type="text">
+
+            <label>Tanggal Lahir</label>
+            <input type="date">
+
+            <label>Jenis Kelamin</label>
+            <select>
+                <option>Laki-Laki</option>
+                <option>Perempuan</option>
+            </select>
+
+            <label>Alamat</label>
+            <textarea rows="3"></textarea>
+
+            <button type="submit">Daftar</button>
+        </form>
+    </section>
+
+    <footer>© 2025 Ponyo’s Style — Pink Elegant Ghibli Fashion</footer>
+</div>
+
+<script>
+    function showMenu(menu){
+        document.querySelectorAll(".cards, section").forEach(el => el.style.display = "none");
+        document.getElementById(menu).style.display = "grid";
+        if(menu !== "dashboard") document.getElementById(menu).style.display = "block";
+    }
+    showMenu("dashboard");
+</script>
+
+</body>
+</html>
